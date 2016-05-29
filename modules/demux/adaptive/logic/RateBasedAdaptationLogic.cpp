@@ -33,6 +33,8 @@
 #include "../http/Chunk.h"
 #include "../tools/Debug.hpp"
 
+#include <iostream>
+
 using namespace adaptive::logic;
 using namespace adaptive;
 
@@ -51,6 +53,7 @@ RateBasedAdaptationLogic::RateBasedAdaptationLogic  (vlc_object_t *p_obj_, int w
     prevbps = 0;
     dlsize = 0;
     vlc_mutex_init(&lock);
+    std::cout << "Created RateBasedAdaptationLogic()" << std::endl;
 }
 
 RateBasedAdaptationLogic::~RateBasedAdaptationLogic()
@@ -79,23 +82,18 @@ BaseRepresentation *RateBasedAdaptationLogic::getNextRepresentation(BaseAdaptati
         if ( rep == NULL )
             return NULL;
     }
-
     return rep;
 }
 
 void RateBasedAdaptationLogic::updateDownloadRate(size_t size, mtime_t time)
 {
     if(unlikely(time == 0))
-        return;
+       return;
     /* Accumulate up to observation window */
     dllength += time;
     dlsize += size;
 
-    if(dllength < CLOCK_FREQ / 4)
-        return;
-
     const size_t bps = CLOCK_FREQ * dlsize * 8 / dllength;
-
     /* set window value */
     if(window[0].bw == 0)
     {

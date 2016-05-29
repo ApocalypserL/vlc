@@ -27,6 +27,8 @@
 #include "../playlist/BasePeriod.h"
 #include <limits>
 
+#include <iostream>
+
 using namespace adaptive::logic;
 
 RepresentationSelector::RepresentationSelector()

@@ -38,6 +38,7 @@
 #include <vlc_demux.h>
 
 #include <ctime>
+#include <iostream>
 
 using namespace adaptive::http;
 using namespace adaptive::logic;
@@ -106,7 +107,6 @@ bool PlaylistManager::setupPeriod()
             }
 
             streams.push_back(st);
-
             /* Generate stream description */
             std::list<std::string> languages;
             if(!set->getLang().empty())
@@ -138,7 +138,6 @@ bool PlaylistManager::start()
 
     playlist->playbackStart.Set(time(NULL));
     nextPlaylistupdate = playlist->playbackStart.Get();
-
     return true;
 }
 
@@ -150,7 +149,7 @@ AbstractStream::status PlaylistManager::demux(mtime_t nzdeadline, bool send)
     for(it=streams.begin(); it!=streams.end(); ++it)
     {
         AbstractStream *st = *it;
-
+		
         if (st->isDisabled())
         {
             if(st->isSelected() && !st->isEOF())

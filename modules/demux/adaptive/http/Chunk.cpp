@@ -34,6 +34,7 @@
 #include <vlc_block.h>
 
 #include <algorithm>
+#include <iostream>
 
 using namespace adaptive::http;
 
@@ -334,7 +335,10 @@ void HTTPChunkBufferedSource::bufferize(size_t readsize)
 
     if(rate.size)
     {
-        connManager->updateDownloadRate(rate.size, rate.time);
+      if (readsize > 0) {
+	std::cout << "Download Time: " << rate.time << std::endl;
+      }
+      connManager->updateDownloadRate(rate.size, rate.time);
     }
 
     vlc_cond_signal(&avail);

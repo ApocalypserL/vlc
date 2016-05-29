@@ -101,6 +101,7 @@ namespace adaptive
             mtime_t getMinAheadTime() const;
             void registerListener(SegmentTrackerListenerInterface *);
             void updateSelected();
+            uint64_t getCurNumber() { return curNumber; };
 
         private:
             void notify(const SegmentTrackerEvent &);

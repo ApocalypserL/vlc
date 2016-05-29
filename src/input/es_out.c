@@ -645,6 +645,7 @@ static void EsOutDecodersStopBuffering( es_out_t *out, bool b_forced )
 
     msg_Dbg( p_sys->p_input, "Stream buffering done (%d ms in %d ms)",
               (int)(i_stream_duration/1000), (int)(i_system_duration/1000) );
+    printf("Startup Time: %d\n", (int)(i_stream_duration));
     p_sys->b_buffering = false;
     p_sys->i_preroll_end = -1;
     p_sys->i_prev_stream_level = -1;

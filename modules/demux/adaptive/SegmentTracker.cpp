@@ -30,6 +30,8 @@
 #include "playlist/SegmentChunk.hpp"
 #include "logic/AbstractAdaptationLogic.h"
 
+#include <iostream>
+
 using namespace adaptive;
 using namespace adaptive::logic;
 using namespace adaptive::playlist;
@@ -129,6 +131,10 @@ SegmentChunk * SegmentTracker::getNextChunk(bool switch_allowed, HTTPConnectionM
         rep = curRepresentation;
     else
         rep = logic->getNextRepresentation(adaptationSet, curRepresentation);
+
+    if (adaptationSet->getRepresentations().size() > 1) {
+      std::cout << "Chunk bitrate: " << curNumber << " " << rep->getBandwidth() << std::endl;
+    }
 
     if ( rep == NULL )
             return NULL;

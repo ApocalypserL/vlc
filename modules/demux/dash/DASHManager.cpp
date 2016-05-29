@@ -45,6 +45,8 @@
 #include <algorithm>
 #include <ctime>
 
+#include <iostream>
+
 using namespace dash;
 using namespace dash::mpd;
 using namespace adaptive::logic;
@@ -54,6 +56,7 @@ DASHManager::DASHManager(demux_t *demux_, MPD *mpd,
                          AbstractAdaptationLogic::LogicType type) :
              PlaylistManager(demux_, mpd, factory, type)
 {
+    std::cout << "making a DASHManager" << std::endl;
 }
 
 DASHManager::~DASHManager   ()

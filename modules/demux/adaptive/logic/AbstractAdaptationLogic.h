@@ -57,7 +57,7 @@ namespace adaptive
                     AlwaysBest,
                     AlwaysLowest,
                     RateBased,
-                    FixedRate
+                    FixedRate,
                 };
         };
     }

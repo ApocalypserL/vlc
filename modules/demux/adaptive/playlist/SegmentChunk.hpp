@@ -41,6 +41,7 @@ namespace adaptive
             SegmentChunk(ISegment *segment, AbstractChunkSource *);
             virtual ~SegmentChunk();
             void setRepresentation(BaseRepresentation *);
+            BaseRepresentation *getRepresentation();
             virtual void onDownload(block_t **); // reimpl
             StreamFormat getStreamFormat() const;
             bool discontinuity;

@@ -1,3 +1,19 @@
+Note
+====
+This fork was for CS244 at Stanford University in 2016.
+Authors: Sloane Sturzenegger and Helen Hastings.
+
+We output performance data on STDOUT that can be parsed by scripts available
+in a git repo here: https://github.com/sloanesturz/experiments
+
+To run our tests, you should follow the steps written in the other repository
+after cloning this repo to ~/vlc and installing it. Steps to install on EC2:
+1. git clone git@github.com:sloanesturz/vlc.git
+1. ./configure --disable-avcodec
+1. ./make
+
+You should have an executable at ~/vlc/vlc
+
 README for the VLC media player
 ===============================
 

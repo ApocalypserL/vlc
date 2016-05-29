@@ -49,6 +49,11 @@ void SegmentChunk::setRepresentation(BaseRepresentation *rep_)
     rep = rep_;
 }
 
+BaseRepresentation *SegmentChunk::getRepresentation()
+{
+    return rep;
+}
+
 void SegmentChunk::onDownload(block_t **pp_block)
 {
     segment->onChunkDownload(pp_block, this, rep);

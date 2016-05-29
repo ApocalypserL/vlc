@@ -32,6 +32,8 @@
 #include "tools/Debug.hpp"
 #include <vlc_demux.h>
 
+#include <iostream>
+
 using namespace adaptive;
 using namespace adaptive::http;
 
@@ -297,9 +299,14 @@ AbstractStream::status AbstractStream::demux(mtime_t nz_deadline, bool send)
 
 block_t * AbstractStream::readNextBlock()
 {
-    if (currentChunk == NULL && !eof)
+    if (currentChunk == NULL && !eof) {
+        mtime_t bufferSize = getBufferingLevel() - getPlaybackTime();
         currentChunk = segmentTracker->getNextChunk(!fakeesout->restarting(), connManager);
-
+        if (currentChunk->getRepresentation()->getBandwidth() > 56000) {
+          std::cout << "Buffer size: " << segmentTracker->getCurNumber() << " " << bufferSize << std::endl;
+        }
+    }
+   
     if(discontinuity)
     {
         msg_Info(p_realdemux, "Encountered discontinuity");
